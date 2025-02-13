@@ -1,0 +1,27 @@
+The following CSS code snippet demonstrates an uncommon error related to the specificity of CSS selectors:
+
+```css
+div {
+  color: blue;
+}
+
+.special-class div {
+  color: red;
+}
+
+#special-id div {
+  color: green;
+}
+
+#special-id .special-class div {
+  color: purple;
+}
+
+<div class="special-class" id="special-id">
+  This text will be purple.
+</div>
+```
+
+The issue lies in understanding how CSS specificity works.  While it seems intuitive that the most specific selector (`#special-id .special-class div`) should always win, there might be unexpected behavior if other stylesheets or complex inheritance is involved.  The `#special-id .special-class div` rule is indeed the most specific, but a poorly understood cascading order could override this, leading to unexpected colors.
+
+This error is subtle because it doesn't cause a syntax error or prevent the CSS from working. The bug manifests only in the unexpected styling result.
